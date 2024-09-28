@@ -41,4 +41,28 @@ class InformationControllerTest {
                 .assertThat()
                 .statusCode(HttpStatus.CREATED.value());
     }
+
+    @Test
+    void givenInvalidCSVFile_whenUploadIt_thenGetBadRequest() {
+        given()
+                .header("Content-Type", "multipart/form-data")
+                .multiPart("file", new File("./src/test/resources/bad.csv"), "text/csv")
+                .when()
+                .post("/api/v1/information")
+                .then()
+                .assertThat()
+                .statusCode(HttpStatus.BAD_REQUEST.value());
+    }
+
+    @Test
+    void givenNonCSVFile_whenUploadIt_thenGetBadRequest() {
+        given()
+                .header("Content-Type", "multipart/form-data")
+                .multiPart("file", new File("./src/test/resources/empty.txt"), "text/text")
+                .when()
+                .post("/api/v1/information")
+                .then()
+                .assertThat()
+                .statusCode(HttpStatus.BAD_REQUEST.value());
+    }
 }
