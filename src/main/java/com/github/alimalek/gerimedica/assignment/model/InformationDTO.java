@@ -14,7 +14,6 @@ import java.util.Date;
 @Accessors(chain = true)
 @Builder
 public class InformationDTO {
-    private Long id;
     private String source;
     private String codeListCode;
     private String code;
