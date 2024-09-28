@@ -30,7 +30,7 @@ public class InformationController {
     }
 
     @GetMapping("/{code}")
-    public ResponseEntity<InformationDTO> getByCode(@PathVariable String code) {
+    public ResponseEntity<InformationDTO> getByCode(@PathVariable("code") String code) {
         return ResponseEntity.ok().body(informationService.findById(code));
     }
 
